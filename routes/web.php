@@ -21,6 +21,9 @@ Route::middleware(['web'])->group(function () {
     Route::middleware(['verifica.login'])->group(function () {
         Route::get('/dashboard', [DashController::class, 'AtivoXDesativos'])->name('dashboard');
         Route::get('/maquina', [MaqController::class,'exibir'])->name('maquina');
+
+        Route::get('/maquina/{maqu_codigo}/edit', [MaqController::class, 'edit'])->name('editMaquina');
+        Route::post('/maquina/{maqu_codigo}/edit', [MaqController::class, 'update'])->name('updateMaquina');
     });
 });
 

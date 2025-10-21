@@ -61,32 +61,12 @@
                             </td>
                             <td class="px-6 py-2 hidden lg:table-cell text-center">{{ '' }}</td>
                             <td class="px-2 py-2 lg:px-6 flex space-x-2 flex items-center justify-center space-x-2">
-                                <button
+                                <a
                                     type="button"
-                                    class="edit-maquina-btn px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm bg-indigo-500 text-white text-xs rounded-lg hover:bg-indigo-600 transition"
-                                    data-id="{{ $maq->maqu_codigo }}"
-                                    data-responsavel="{{ $maq->maqu_responsavel }}"
-                                    data-nome="{{ $maq->maqu_nome }}"
-                                    data-iplocal="{{ $maq->maqu_iplocal }}"
-                                    data-ippublico="{{ $maq->maqu_ippublico }}"
-                                    data-so="{{ $maq->maqu_so }}"
-                                    data-versaoso="{{ $maq->maqu_versaoso }}"
-                                    data-arquitetura="{{ $maq->maqu_arquitetura }}"
-                                    data-processador="{{ $maq->maqu_processador }}"
-                                    data-cores="{{ $maq->maqu_cores }}"
-                                    data-threads="{{ $maq->maqu_threads }}"
-                                    data-ram="{{ $maq->maqu_ram }}"
-                                    data-usocpu="{{ $maq->maqu_usocpu }}"
-                                    data-usoram="{{ $maq->maqu_usoram }}"
-                                    data-coleta="{{ $maq->maqu_coleta }}"
-                                    data-marca="{{ $maq->maqu_marca }}"
-                                    data-modelo="{{ $maq->maqu_modelo }}"
-                                >
+                                    class="edit-maquina-btn px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm bg-indigo-500 text-white text-xs rounded-lg hover:bg-indigo-600 transition" href="{{ route('editMaquina', ['maqu_codigo' => $maq->maqu_codigo]) }}">
                                     Editar
-                                </button>
-                                <button type="button" class="add-maquina-exclui px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm border rounded-lg bg-red-600 text-gray-100 hover:bg-red-700"
-                                data-id="{{ $maq->maqu_codigo }}"
-                                >
+                                </a>
+                                <button type="button" class="add-maquina-exclui px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm border rounded-lg bg-red-600 text-gray-100 hover:bg-red-700">
                                     Excluir
                                 </button>
                             </td>
@@ -103,6 +83,4 @@
         </div>
     </div>
 </section>
-@include('pages.modals.maquina.add')
-@include('pages.modals.maquina.edit')
 @endsection
