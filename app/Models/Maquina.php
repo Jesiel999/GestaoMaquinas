@@ -31,4 +31,8 @@ class Maquina extends Model
         'maqu_modelo',      
         ];
 
+        public function colaborador()
+        {
+            return $this->belongsTo(Colaborador::class, 'maqu_responsavel', 'cola_codigo');
+        }
 }

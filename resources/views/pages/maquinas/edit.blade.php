@@ -23,11 +23,14 @@
         <div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mt-2">Responsável</label>
-                <select name="maqu_responsavel" 
-                    class="border rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-indigo-500">
-                    <option value="">Selecione</option>
-                    <option value="1" {{ $maquina->maqu_responsavel == 1 ? 'selected' : '' }}>Responsável 1</option>
-                    <option value="2" {{ $maquina->maqu_responsavel == 2 ? 'selected' : '' }}>Responsável 2</option>
+                <select name="maqu_responsavel" class="border rounded-lg px-3 py-2 w-full">
+                    <option value="">Selecione um colaborador</option>
+                    @foreach ($colaboradores as $colaborador)
+                        <option value="{{ $colaborador->cola_codigo }}"
+                            {{ $maquina->maqu_responsavel == $colaborador->cola_codigo ? 'selected' : '' }}>
+                            {{ $colaborador->cola_nome }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 

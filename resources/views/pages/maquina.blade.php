@@ -14,10 +14,10 @@
     <div class="bg-white rounded-xl shadow-sm p-4 lg:p-8 w-full  text-base lg:text-lg">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-bold">Computadores</h2>
-            <button id="add-maquina-btn" 
+            <a id="add-maquina-btn" href="{{ route('cadMaquina') }}"
                 class="bg-indigo-600 text-white px-6 py-4 text-lg lg:px-3 lg:py-2 lg:text-sm rounded-lg hover:bg-indigo-700 transition flex items-center font-bold">
                 <i class="fas fa-desktop mr-2 ml-2"></i> Nova Computador
-            </button> 
+            </a> 
         </div>
 
         <div class="w-full overflow-x-auto">
@@ -35,12 +35,13 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                    @forelse($maquina as $maq)
+                    @forelse($maquinas as $maq)
                         <tr class="hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-2 text-center text-gray-600 font-medium hidden lg:table-cell">
                                 {{ \Carbon\Carbon::parse($maq->maqu_coleta)->format('d/m/Y h:m:s') }}
                             </td>
-                            <td class="px-2 py-2 lg:px-6 text-wrap text-center text-gray-700">{{ $maq->colaborador ? $maq->colaborador->cola_nome : '' }}</td>
+                            <td class="px-2 py-2 lg:px-6 text-wrap text-center text-gray-700">{{ $maq->colaborador->cola_nome ?? '' }} </td>
+
                             <td class="px-6 py-2 hidden text-center lg:table-cell">
                                 <span class="px-3 py-1 text-xs font-semibold rounded-full">
                                     {{ $maq->maqu_nome }}
@@ -66,7 +67,11 @@
                                     class="edit-maquina-btn px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm bg-indigo-500 text-white text-xs rounded-lg hover:bg-indigo-600 transition" href="{{ route('editMaquina', ['maqu_codigo' => $maq->maqu_codigo]) }}">
                                     Editar
                                 </a>
-                                <button type="button" class="add-maquina-exclui px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm border rounded-lg bg-red-600 text-gray-100 hover:bg-red-700">
+                                <button 
+                                    type="button" 
+                                    class="add-maquina-exclui px-5 py-3 text-base lg:px-3 lg:py-2 lg:text-sm bg-red-500 text-white text-xs rounded-lg hover:bg-red-600 transition"
+                                    data-id="{{ $maq->maqu_codigo }}"
+                                >
                                     Excluir
                                 </button>
                             </td>
@@ -83,4 +88,5 @@
         </div>
     </div>
 </section>
+@include('pages.maquinas.delete')
 @endsection

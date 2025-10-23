@@ -6,23 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MaqRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
         return [
-            
+            'maqu_nome' => 'required',
+            'maqu_responsavel'=> 'nullable|integer',
+            'maqu_marca'=> 'nullable|string',
+            'maqu_modelo'=> 'nullable|string',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'O campo :attribute é obrigatório.',
+            'string'   => 'O campo :attribute deve ser um texto.',
+            'integer'      => 'O campo :attribute tem que ser um número.',
         ];
     }
 }

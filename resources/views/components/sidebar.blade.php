@@ -14,11 +14,11 @@
 <nav class="flex-1 overflow-y-auto py-4 text-3xl lg:text-sm">
     <ul>
         <li class="mb-1">
-            <a href="{{'dashboard'}}" class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active" >
+            <a href="{{route('dashboard')}}" class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active" >
                 <i class="fas fa-chart-pie mr-3"></i>
                 <span class="nav-text hidden text-base">Dashboard</span>
             </a>
-            <a href="{{'maquina'}}" class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active" >
+            <a href="{{route('maquina')}}" class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active" >
                 <i class="fas fa-desktop mr-3"></i>
                 <span class="nav-text hidden text-base">Máquinas</span>
             </a>

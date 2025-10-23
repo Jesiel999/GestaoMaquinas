@@ -22,8 +22,13 @@ Route::middleware(['web'])->group(function () {
         Route::get('/dashboard', [DashController::class, 'AtivoXDesativos'])->name('dashboard');
         Route::get('/maquina', [MaqController::class,'exibir'])->name('maquina');
 
-        Route::get('/maquina/{maqu_codigo}/edit', [MaqController::class, 'edit'])->name('editMaquina');
-        Route::post('/maquina/{maqu_codigo}/edit', [MaqController::class, 'update'])->name('updateMaquina');
+        Route::get('/maquinas/cadastro', [MaqController::class, 'cad'])->name('cadMaquina');
+        Route::post('/maquinas/cadastro', [MaqController::class, 'store'])->name('cadastroMaquina');
+
+        Route::get('/maquina/{maqu_codigo}/editar', [MaqController::class, 'edit'])->name('editMaquina');
+        Route::post('/maquina/{maqu_codigo}/editar', [MaqController::class, 'edit'])->name('updateMaquina');
+
+        Route::delete('/maquina/{maqu_codigo}', [MaqController::class,'destroy'])->name('deleteMaquina');
     });
 });
 
