@@ -19,4 +19,9 @@ class Colaborador extends Model
         "cola_email",
         "cola_departamento",
     ];
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class, 'cola_departamento', 'depa_codigo');
+    }
 }

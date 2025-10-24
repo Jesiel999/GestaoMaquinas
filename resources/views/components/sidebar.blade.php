@@ -22,6 +22,17 @@
                 <i class="fas fa-desktop mr-3"></i>
                 <span class="nav-text hidden text-base">Máquinas</span>
             </a>
+           <a href="{{ route('departamento') }}" 
+            class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active">
+                <i class="fas fa-building mr-3"></i>
+                <span class="nav-text hidden text-base">Departamento</span>
+            </a>
+
+            <a href="{{ route('colaborador') }}" 
+            class="flex items-center px-4 py-3 text-white hover:bg-indigo-600 transition nav-item active">
+                <i class="fas fa-user mr-3"></i>
+                <span class="nav-text hidden text-base">Colaborador</span>
+            </a>
         </li>
     </ul>
 </nav>
