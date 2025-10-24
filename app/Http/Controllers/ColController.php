@@ -32,7 +32,7 @@ class ColController extends Controller
     }
     
     // Cadastro
-    public function store(MaqRequest $request){
+    public function store(ColRequest $request){
         $colaborador = Colaborador::create($request->validated());
 
         return redirect()
@@ -46,8 +46,10 @@ class ColController extends Controller
         $colaborador = Colaborador::findOrFail($depa_codigo);
 
         $colaborador->update($request->all());
+        
+        $departamentos = Departamento::orderBy('depa_codigo','desc')->get();  
 
-        return view('pages.colaborador.edit')->back()->with('success','Departamento atualizado com sucesso!');
+        return view('pages.colaborador.edit', compact('colaborador', 'departamentos'));
     }
 
     // Editar
@@ -57,7 +59,9 @@ class ColController extends Controller
 
         $colaborador->update($request->validated());
 
-        return view('pages.colaborador')->back()->with('success','Departamento atualizado com sucesso!');
+        return redirect()
+            ->route('colaborador')
+            ->with('success','Colaborador atualizado com sucesso!');
     
     }
 

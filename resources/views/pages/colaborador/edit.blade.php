@@ -11,7 +11,7 @@
 
     <h2 class="text-2xl font-bold mb-4 text-center">Editar Colaborador</h2>
 
-    <form id="form-edit" method="POST" action="{{ route('atualizarColaborador', $colaborador->cola_codigo) }}">
+    <form id="form-edit" method="POST" action="{{ route('updateColaborador', $colaborador->cola_codigo) }}">
         @csrf
         @method('PUT')
 

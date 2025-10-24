@@ -31,7 +31,7 @@ Route::middleware(['web'])->group(function () {
         Route::post('/maquinas/cadastro', [MaqController::class, 'store'])->name('cadastroMaquina');
 
         Route::get('/maquina/{maqu_codigo}/editar', [MaqController::class, 'edit'])->name('editMaquina');
-        Route::post('/maquina/{maqu_codigo}/editar', [MaqController::class, 'edit'])->name('updateMaquina');
+        Route::put('/maquina/{maqu_codigo}', [MaqController::class, 'update'])->name('updateMaquina');
 
         Route::delete('/maquina/{maqu_codigo}', [MaqController::class,'destroy'])->name('deleteMaquina');
 
@@ -40,7 +40,7 @@ Route::middleware(['web'])->group(function () {
         Route::post('/colaborador/cadastro', [ColController::class, 'store'])->name('cadastroColaborador');
 
         Route::get('/colaborador/{cola_codigo}/editar', [ColController::class, 'edit'])->name('editColaborador');
-        Route::post('/colaborador/{cola_codigo}/editar', [ColController::class, 'edit'])->name('updateColaborador');
+        Route::put('/colaborador/{cola_codigo}', [ColController::class, 'update'])->name('updateColaborador');
 
         Route::delete('/colaborador/{cola_codigo}', [ColController::class,'destroy'])->name('deleteColaborador');
 
@@ -49,7 +49,7 @@ Route::middleware(['web'])->group(function () {
         Route::post('/departamento/cadastro', [DepController::class,'store'])->name('cadastroDepartamento');
 
         Route::get('/departamento/{depa_codigo}/editar', [DepController::class, 'edit'])->name('editDepartamento');
-        Route::post('/departamento/{depa_codigo}/editar', [DepController::class, 'edit'])->name('updateDepartamento');
+        Route::put('/departamento/{depa_codigo}', [DepController::class, 'update'])->name('updateDepartamento');
 
         Route::delete('/departamento/{depa_codigo}', [DepController::class,'destroy'])->name('deleteDepartamento');
     });
