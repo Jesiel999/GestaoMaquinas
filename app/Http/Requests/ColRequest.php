@@ -20,6 +20,7 @@ class ColRequest extends FormRequest
             'cola_telefone' => 'nullable|string',
             'cola_email' => 'nullable',
             'cola_departamento' => 'required|integer',
+            'cola_ativo' => 'required|integer',
         ];
     }
 

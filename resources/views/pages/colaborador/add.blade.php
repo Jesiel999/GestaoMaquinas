@@ -55,6 +55,16 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-700 mt-2">Ativo</label>
+                <select name="cola_ativo"
+                    class="border rounded-lg w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Selecione um Ativo/Inativo</option>
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                </select>
+            </div>
         </div>
 
         <div class="flex justify-end space-x-3 mt-6">

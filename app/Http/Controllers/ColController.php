@@ -3,21 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ColRequest;
-use App\Http\Requests\MaqRequest;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
 use App\Models\Colaborador;
 
 class ColController extends Controller
 {
-    // Retorna tela de cadastro
-    public function exibir()
+    // Exibir
+    public function exibir(Request $request)
     {
-        $colaborador = Colaborador::orderBy('cola_codigo', 'asc')
-            ->get();
+        $status = $request->input('status', '1'); 
 
-        return view('pages.colaborador', compact('colaborador'));
+        $query = Colaborador::query();
+
+        if ($status !== 'todos') {
+            $query->where('cola_ativo', $status);
+        }
+
+        $colaborador = $query->orderBy('cola_codigo', 'asc')->get();
+
+        return view('pages.colaborador', compact('colaborador', 'status'));
     }
+
 
     // Retorna tela de cadastro
     public function cad(Colaborador $colaborador){
@@ -65,13 +72,22 @@ class ColController extends Controller
     
     }
 
-    // Deletar
-    public function destroy($cola_codigo){
-
+    // Alterar status
+    public function inativar($cola_codigo)
+    {
         $colaborador = Colaborador::findOrFail($cola_codigo);
-        $colaborador->delete();
 
-        return redirect()->route('colaborador')->with('success','Departamento excluído!');
+        $colaborador->cola_ativo = $colaborador->cola_ativo ? 0 : 1;
+        $colaborador->save();
 
+        if ($colaborador->cola_ativo == 0) {
+            \App\Models\Maquina::where('maqu_responsavel', $cola_codigo)
+                ->update(['maqu_responsavel' => null]);
+        }
+
+        return redirect()
+            ->route('colaborador')
+            ->with('success', 'Status do colaborador alterado e máquinas desvinculadas!');
     }
+
 }

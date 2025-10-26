@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('extra-scripts')
-<script type="module" src="{{Vite::asset('resources/js/modals/colaborador.js')}}"></script>
+<script type="module" src="{{Vite::asset('resources/js/modals/departamento.js')}}"></script>
 @endsection
 
-@section('title', 'Colaborador')
+@section('title', 'Departamento')
 
 @section('header')
 @endsection
@@ -16,7 +16,7 @@
             <h2 class="text-xl font-bold">Departamento</h2>
             <a id="add-maquina-btn" href="{{ route('cadDepartamento') }}"
                 class="bg-indigo-600 text-white px-6 py-4 text-lg lg:px-3 lg:py-2 lg:text-sm rounded-lg hover:bg-indigo-700 transition flex items-center font-bold">
-                <i class="fas fa-desktop mr-2 ml-2"></i> Nova Departamento
+                <i class="fas fa-add mr-2 ml-2"></i> Novo Departamento
             </a> 
         </div>
 
@@ -27,12 +27,12 @@
                         <h3 class="font-medium truncate text-sm md:text-base">{{ $dep->depa_nome }}</h3>
                     </div>
                     <div class="flex space-x-2">
-                        <button type="button"
+                        <a type="button" href="{{ route('editDepartamento', ['depa_codigo' => $dep->depa_codigo]) }}"
                             class="categoria-edit p-2 bg-white border rounded-full hover:bg-gray-200">
                             <i class="fas fa-pen text-sm md:text-base"></i>
-                        </button>
+                        </a>
                         <button type="button"
-                            class="categoria-exclui p-2 bg-white border rounded-full hover:bg-gray-200"
+                            class="add-departamento-exclui p-2 bg-white border rounded-full hover:bg-gray-200"
                             data-id="{{ $dep->depa_codigo }}">
                             <i class="fas fa-trash text-sm md:text-base"></i>
                         </button>
@@ -46,4 +46,5 @@
         </div>
     </div>
 </section>
+@include('pages.departamento.delete');
 @endsection

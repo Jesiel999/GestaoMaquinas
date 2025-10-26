@@ -24,6 +24,7 @@ return new class extends Migration
                 ->references('depa_codigo')
                 ->on('departamento')
                 ->onDelete('cascade');
+            $table->integer('cola_ativo');
 
             $table->timestamps();
         });

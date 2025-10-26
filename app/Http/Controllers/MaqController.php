@@ -27,16 +27,17 @@ class MaqController extends Controller
     }
 
     // Retorno para tela de cadastro
-    public function cad(Maquina $maquina)
+    public function cad()
     {
-        $query = Maquina::query();
+        $maquinas = Maquina::orderBy('maqu_codigo', 'desc')->get();
 
-        $maquinas = $query->orderBy('maqu_codigo', 'desc')->get();
-
-        $colaboradores = Colaborador::orderBy('cola_codigo', 'desc')->get();
+        $colaboradores = Colaborador::where('cola_ativo', 1)
+            ->orderBy('cola_codigo', 'desc')
+            ->get();
 
         return view('pages.maquinas.add', compact('maquinas', 'colaboradores'));
     }
+
     // Cadastro
     public function store(MaqRequest $request)
     {
@@ -54,7 +55,9 @@ class MaqController extends Controller
        
         $maquina = Maquina::findOrFail($maqu_codigo);
 
-        $colaboradores = Colaborador::orderBy('cola_nome', 'asc')->get();
+        $colaboradores = Colaborador::where('cola_ativo', 1)
+            ->orderBy('cola_nome', 'asc')
+            ->get();
 
         return view('pages.maquinas.edit', compact('maquina', 'colaboradores'));
     }
@@ -65,7 +68,9 @@ class MaqController extends Controller
 
         $maquina->update($request->all());
 
-        return redirect('pages.maquina')->back()->with("success","Máquina atualizada com sucesso !");
+        return redirect()
+            ->route('maquina')
+            ->with("success","Máquina atualizada com sucesso !");
     }
 
     // Deletar

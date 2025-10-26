@@ -42,9 +42,8 @@ class DepController extends Controller
 
         $departamento = Departamento::findOrFail($depa_codigo);
 
-        $departamento->update($request->all());
-
-        return view('pages.departamento.edit')->back()->with('success','Departamento atualizado com sucesso!');
+        return view('pages.departamento.edit', compact('departamento'));
+   ;
     }
 
     // Editar
@@ -54,7 +53,9 @@ class DepController extends Controller
 
         $departamento->update($request->validated());
 
-        return view('pages.departamento')->back()->with('success','Departamento atualizado com sucesso!');
+        return redirect()
+            ->route('departamento')
+            ->with('success','Departamento atualizado com sucesso!');
     
     }
 

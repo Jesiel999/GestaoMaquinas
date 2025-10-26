@@ -18,6 +18,7 @@ class Colaborador extends Model
         "cola_telefone",
         "cola_email",
         "cola_departamento",
+        "cola_ativo",
     ];
 
     public function departamento()

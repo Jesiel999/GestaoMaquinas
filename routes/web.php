@@ -42,7 +42,7 @@ Route::middleware(['web'])->group(function () {
         Route::get('/colaborador/{cola_codigo}/editar', [ColController::class, 'edit'])->name('editColaborador');
         Route::put('/colaborador/{cola_codigo}', [ColController::class, 'update'])->name('updateColaborador');
 
-        Route::delete('/colaborador/{cola_codigo}', [ColController::class,'destroy'])->name('deleteColaborador');
+        Route::post('/colaborador/{cola_codigo}', [ColController::class,'inativar'])->name('deleteColaborador');
 
         // DEPARTAMENTO
         Route::get('/departamento/cadastro', [DepController::class, 'cad'])->name('cadDepartamento');

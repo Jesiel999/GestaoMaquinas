@@ -16,7 +16,7 @@
             <h2 class="text-xl font-bold">Colaboradores</h2>
             <a id="add-maquina-btn" href="{{ route('cadColaborador') }}"
                 class="bg-indigo-600 text-white px-6 py-4 text-lg lg:px-3 lg:py-2 lg:text-sm rounded-lg hover:bg-indigo-700 transition flex items-center font-bold">
-                <i class="fas fa-desktop mr-2 ml-2"></i> Nova Colaborador
+                <i class="fas fa-add mr-2 ml-2"></i> Novo Colaborador
             </a> 
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -47,13 +47,26 @@
                         >
                             <i class="fas fa-pen text-sm"></i>
                         </a>
-                        <button 
-                            type="button" 
-                            class="colaborador-exclui p-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition"
-                            data-id="{{ $col->cola_codigo }}"
-                        >
-                            <i class="fas fa-trash text-sm"></i>
-                        </button>
+
+                        @if ($col->cola_ativo == 1)
+                            <button 
+                                type="button" 
+                                class="add-colaborador-toggle p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition"
+                                data-id="{{ $col->cola_codigo }}"
+                                title="Inativar Colaborador"
+                            >
+                                <i class="fas fa-user-slash text-sm"></i>
+                            </button>
+                        @else
+                            <button 
+                                type="button" 
+                                class="add-colaborador-toggle p-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition"
+                                data-id="{{ $col->cola_codigo }}"
+                                title="Ativar Colaborador"
+                            >
+                                <i class="fas fa-user-check text-sm"></i>
+                            </button>
+                        @endif
                     </div>
                 </div>
             @empty
@@ -62,6 +75,18 @@
                 </div>
             @endforelse
         </div>
-
+        <div class="flex justify-end mb-6">
+            <form method="GET" action="{{ route('colaborador') }}">
+                <select name="status" id="status-filter"
+                    class="border rounded-lg py-2 px-3 text-gray-700 focus:ring-2 focus:ring-indigo-500"
+                    onchange="this.form.submit()">
+                    <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Ativos</option>
+                    <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inativos</option>
+                    <option value="todos">Todos</option>
+                </select>
+            </form>
+        </div>
 </section>
+@include('pages.colaborador.inativa')
+@include('pages.colaborador.ativar')
 @endsection
